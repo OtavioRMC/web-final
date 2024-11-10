@@ -12,8 +12,7 @@
     die("Falha na Conexão: "  . $conn->connect_error);
   }
   else {
-    echo "Conexão com o Banco efetuada com sucesso!";
-    //$conn->set_charset("utf-8");
+    echo "";
   }
 
 

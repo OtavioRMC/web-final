@@ -84,7 +84,7 @@
 </head>
 <body>
   <div class="form-container">
-    <form action="../backend/login.php" method="POST" class="form">
+    <form action="login.php" method="POST" class="form">
       <div class="logo-container">
         <img src="/api/placeholder/150/50" alt="Restaurant Logo">
       </div>
@@ -103,5 +103,25 @@
       <button type="submit">Login</button>
     </form>
   </div>
+  <script>
+    document.querySelector('.form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+  
+      const response = await fetch('login.php', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      const result = await response.json();
+  
+      if (result.status === 'success') {
+        window.location.href = 'menu.html';
+      } else {
+        alert(result.message);
+      }
+    });
+  </script>
+  
 </body>
 </html>
