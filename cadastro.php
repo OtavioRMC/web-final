@@ -9,6 +9,7 @@
  $data_nascimento = $_POST["data_nasc"];
  $telefone = $_POST["telefone"];
  $senha = $_POST["senha"];
+ $hashed_password = password_hash($senha,PASSWORD_DEFAULT,['cost' => 12]);
  $cep = $_POST["cep"];
  $rua = $_POST["rua"];
  $num = $_POST["numero"];
@@ -25,7 +26,7 @@ echo"antes da instrução";
  
 if ($cmd) {
   // Associar parâmetros a instrução sql.
-  $cmd->bind_param("ssssssssssss", $nome, $email, $data_nascimento, $telefone, $senha, $cep, $rua, $num, $bairro, $compl, $cidade, $estado);
+  $cmd->bind_param("ssssssssssss", $nome, $email, $data_nascimento, $telefone, $hashed_password, $cep, $rua, $num, $bairro, $compl, $cidade, $estado);
   
   // Executa a query
   if ($cmd->execute()) {
