@@ -104,23 +104,31 @@
     </form>
   </div>
   <script>
+    /* 
+    -> Fetch API para redirecionar o usuário para o menu  
+      1. Salva os dados do formulário após o evento da submissão
+        "const formData = new FormData(event.target)"
+      2. Envia uma requisição ao backend "login.php", utilizando o método POST
+        com o Body sendo formData. 
+      3. Espera a resposta da API, caso for "sucess" redirecina o usuário ao "menu.html".
+    */
     document.querySelector('.form').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-  
-      const response = await fetch('login.php', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      const result = await response.json();
-  
-      if (result.status === 'success') {
-        window.location.href = 'menu.html';
-      } else {
-        alert(result.message);
-      }
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    const response = await fetch('login.php', {
+      method: 'POST',
+      body: formData,
     });
+
+    const result = await response.json();
+
+    if (result.status === 'success') {
+      window.location.href = 'menu.html';
+    } else {
+      alert(result.message);
+    }
+  });
   </script>
   
 </body>

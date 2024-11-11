@@ -3,9 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Restaurante</title>
+  <title>Nova Kitchen - Menu</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .menu {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 2.5em;
+    }
+
+    .menu-section {
+      margin-bottom: 40px;
+    }
+
+    .menu-section h2 {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #4CAF50;
+      color: #2c3e50;
+    }
+    /*Responsável por deixar o menu em modo grid*/
+    .menu-items-grid {
+      display: grid; /*caso trocar para flex vai mudar a orientação*/
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /*quebra o grid para a direita*/
+      gap: 30px; /* Espaçamento entre os ícones.*/
+    }
+
+    .menu-item {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-item-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .menu-item-content {
+      padding: 20px;
+    }
+
+    .menu-item h3 {
+      margin: 0 0 10px 0;
+      color: #2c3e50;
+    }
+
+    .menu-item p {
+      margin: 0 0 15px 0;
+      color: #666;
+      font-size: 0.9em;
+      line-height: 1.4;
+    }
+
+    .menu-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .menu-item-price {
+      font-weight: bold;
+      color: #4CAF50;
+      font-size: 1.2em;
+    }
+
+    .order-button {
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-button:hover {
+      background-color: #45a049;
+    }
+
+    /* Logo Section */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-container img {
+      max-width: 350px;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-  <h1> Restaurante Funcionando ! ..</h1>
+  <div class="menu-container">
+    <div class="menu">
+      <div class="logo-container">
+        <img src="logo.png" alt="Divino Restaurante">
+      </div>
+      <h1>Divino Restaurante</h1>
+
+      <div class="menu-section">
+        <h2>Entradas</h2>
+        <div class="menu-items-grid">
+          <div class="menu-item">
+            <img src="caesar-salad.jpg" alt="Caesar Salad" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Caesar Salad</h3>
+              <p>Romaine lettuce, croutons, parmesan cheese, and caesar dressing</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$8.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <img src="garlic-bread.jpg" alt="Garlic Bread" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Garlic Bread</h3>
+              <p>Toasted bread with garlic butter and parmesan</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$5.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2>Pratos Principais</h2>
+        <div class="menu-items-grid">
+          <div class="menu-item">
+            <img src="salmon.jpg" alt="Grilled Salmon" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Salmão Grelhado</h3>
+              <p>Fresh salmon fillet grilled and served with lemon dill sauce</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$24.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <img src="/api/placeholder/400/200" alt="Beef Stroganoff" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Beef Stroganoff</h3>
+              <p>Tender beef in a creamy mushroom sauce, served over egg noodles</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$18.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-section">
+        <h2>Desserts</h2>
+        <div class="menu-items-grid">
+          <div class="menu-item">
+            <img src="/api/placeholder/400/200" alt="Tiramisu" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Tiramisu</h3>
+              <p>Classic Italian dessert with layers of espresso-soaked ladyfingers and mascarpone cream</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$8.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <img src="/api/placeholder/400/200" alt="Chocolate Lava Cake" class="menu-item-image">
+            <div class="menu-item-content">
+              <h3>Chocolate Lava Cake</h3>
+              <p>Rich, decadent chocolate cake with a molten chocolate center</p>
+              <div class="menu-item-footer">
+                <span class="menu-item-price">$9.99</span>
+                <button class="order-button">Order Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
