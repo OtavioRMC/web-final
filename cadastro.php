@@ -18,8 +18,6 @@
  $cidade = $_POST["cidade"];
  $estado = $_POST["estado"];
 
-echo"antes da instrução";
-
  $sql = "INSERT INTO tb_usuario (nome, email, data_nascimento, telefone, senha, cep, rua, numero, bairro, complemento, cidade, estado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
  $cmd = $conn->prepare($sql);
 
