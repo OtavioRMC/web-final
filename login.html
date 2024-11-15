@@ -1,135 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <style>
-    /* General Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <style>
+            /* General Styles */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
 
-    .form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 0;
-    }
+            .form-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 40px 0;
+            }
 
-    /* Form Styles */
-    .form {
-      background-color: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 100%;
-    }
+            /* Form Styles */
+            .form {
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                max-width: 400px;
+                width: 100%;
+            }
 
-    .form h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+            .form h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+            .form-group {
+                margin-bottom: 20px;
+            }
 
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
 
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
+            .form-group input {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
 
-    .form button {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+            .form button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
 
-    .form button:hover {
-      background-color: #45a049;
-    }
+            .form button:hover {
+                background-color: #45a049;
+            }
 
-    /* Logo Section */
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+            /* Logo Section */
+            .logo-container {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
 
-    .logo-container img {
-      max-width: 150px;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <form action="login.php" method="POST" class="form">
-      <div class="logo-container">
-        <img src="/api/placeholder/150/50" alt="Restaurant Logo">
-      </div>
-      <h2>Login</h2>
+            .logo-container img {
+                max-width: 250px;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+            <form action="login.php" method="POST" class="form">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Restaurant Logo" />
+                </div>
+                <h2>Login</h2>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
 
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-      </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                    />
+                </div>
 
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  <script>
-    /* 
-    -> Fetch API para redirecionar o usuário para o menu  
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <script>
+            /*
+    -> Fetch API para redirecionar o usuário para o menu
       1. Salva os dados do formulário após o evento da submissão
         "const formData = new FormData(event.target)"
       2. Envia uma requisição ao backend "login.php", utilizando o método POST
-        com o Body sendo formData. 
+        com o Body sendo formData.
       3. Espera a resposta da API, caso for "sucess" redirecina o usuário ao "menu.html".
     */
-    document.querySelector('.form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+            document
+                .querySelector(".form")
+                .addEventListener("submit", async (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(event.target);
 
-    const response = await fetch('login.php', {
-      method: 'POST',
-      body: formData,
-    });
+                    const response = await fetch("login.php", {
+                        method: "POST",
+                        body: formData,
+                    });
 
-    const result = await response.json();
+                    const result = await response.json();
 
-    if (result.status === 'success') {
-      window.location.href = 'menu.html';
-    } else {
-      alert(result.message);
-    }
-  });
-  </script>
-  
-</body>
+                    if (result.status === "success") {
+                        window.location.href = "menu.html";
+                    } else {
+                        alert(result.message);
+                    }
+                });
+        </script>
+    </body>
 </html>

@@ -125,6 +125,41 @@
                 max-width: 350px;
                 height: auto;
             }
+
+            /* Carrinho Estilização */
+            #cartDisplay {
+                background-color: #fff;
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            #cartDisplay ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            #cartDisplay li {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            #cartDisplay button {
+                background-color: #e74c3c;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            #cartDisplay button:hover {
+                background-color: #c0392b;
+            }
         </style>
     </head>
     <body>
@@ -243,7 +278,7 @@
                     <div class="menu-items-grid">
                         <div class="menu-item">
                             <img
-                                src="strogonoff.jpg"
+                                src="tiramisu.jpg"
                                 alt="Tiramisu"
                                 class="menu-item-image"
                             />
@@ -288,5 +323,82 @@
                 </div>
             </div>
         </div>
+        <script>
+            // Inicializar o carrinho
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Função para atualizar a exibição do carrinho
+            function updateCartDisplay() {
+                const cartDisplay = document.getElementById("cartDisplay");
+                cartDisplay.innerHTML = ""; // Limpa o conteúdo anterior
+
+                if (cart.length === 0) {
+                    cartDisplay.innerHTML = "<p>O carrinho está vazio.</p>";
+                    return;
+                }
+
+                const cartList = document.createElement("ul");
+
+                cart.forEach((item, index) => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${item.name} - ${item.price}`;
+
+                    // Botão para remover o item do carrinho
+                    const removeButton = document.createElement("button");
+                    removeButton.textContent = "Remover";
+                    removeButton.onclick = () => removeFromCart(index);
+
+                    listItem.appendChild(removeButton);
+                    cartList.appendChild(listItem);
+                });
+
+                cartDisplay.appendChild(cartList);
+            }
+
+            // Função para adicionar item ao carrinho
+            function addToCart(id, name, price) {
+                const existingItem = cart.find((item) => item.id === id);
+
+                if (existingItem) {
+                    // Se o item já estiver no carrinho, aumenta a quantidade
+                    existingItem.quantity += 1;
+                } else {
+                    // Adiciona um novo item ao carrinho
+                    cart.push({ id, name, price, quantity: 1 });
+                }
+
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay();
+            }
+
+            // Função para remover item do carrinho
+            function removeFromCart(index) {
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartDisplay();
+            }
+
+            // Inicializar exibição do carrinho ao carregar a página
+            document.addEventListener("DOMContentLoaded", updateCartDisplay);
+
+            // Adicionar evento aos botões "Peça Agora"
+            document
+                .querySelectorAll(".order-button")
+                .forEach((button, index) => {
+                    button.addEventListener("click", (event) => {
+                        const menuItem = event.target.closest(".menu-item");
+                        const itemId = index + 1; // Supondo que o ID seja baseado na ordem
+                        const itemName =
+                            menuItem.querySelector("h3").textContent;
+                        const itemPrice =
+                            menuItem.querySelector(
+                                ".menu-item-price",
+                            ).textContent;
+
+                        addToCart(itemId, itemName, itemPrice);
+                        alert(`${itemName} foi adicionado ao carrinho!`);
+                    });
+                });
+        </script>
     </body>
 </html>
