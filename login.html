@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,7 +69,6 @@
                 background-color: #45a049;
             }
 
-            /* Logo Section */
             .logo-container {
                 display: flex;
                 justify-content: center;
@@ -80,15 +79,37 @@
                 max-width: 250px;
                 height: auto;
             }
+
+            .error-message {
+                color: red;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .link-container {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .link-container a {
+                color: #4caf50;
+                text-decoration: none;
+            }
+
+            .link-container a:hover {
+                text-decoration: underline;
+            }
         </style>
     </head>
     <body>
         <div class="form-container">
-            <form action="login.php" method="POST" class="form">
+            <form id="loginForm" class="form">
                 <div class="logo-container">
                     <img src="logo.png" alt="Restaurant Logo" />
                 </div>
                 <h2>Login</h2>
+
+                <div id="errorMessage" class="error-message"></div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>
@@ -96,7 +117,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="password">Senha:</label>
                     <input
                         type="password"
                         id="password"
@@ -105,37 +126,69 @@
                     />
                 </div>
 
-                <button type="submit">Login</button>
+                <button type="submit">Entrar</button>
+
+                <div class="link-container">
+                    <a href="register.html">Cadastrar-se</a> |
+                    <a href="forgot-password.html">Esqueceu a Senha?</a>
+                </div>
             </form>
         </div>
+
         <script>
-            /*
-    -> Fetch API para redirecionar o usuário para o menu
-      1. Salva os dados do formulário após o evento da submissão
-        "const formData = new FormData(event.target)"
-      2. Envia uma requisição ao backend "login.php", utilizando o método POST
-        com o Body sendo formData.
-      3. Espera a resposta da API, caso for "sucess" redirecina o usuário ao "menu.html".
-    */
+            // Validação e envio do formulário
             document
-                .querySelector(".form")
+                .getElementById("loginForm")
                 .addEventListener("submit", async (event) => {
                     event.preventDefault();
+
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
+                    const errorMessage =
+                        document.getElementById("errorMessage");
+
+                    // Limpar mensagens de erro
+                    errorMessage.textContent = "";
+
+                    // Validações de email e senha
+                    if (!validateEmail(email)) {
+                        errorMessage.textContent =
+                            "Por favor, insira um e-mail válido.";
+                        return;
+                    }
+
+                    if (password.length < 6) {
+                        errorMessage.textContent =
+                            "A senha deve ter no mínimo 6 caracteres.";
+                        return;
+                    }
+
+                    // Envio dos dados via Fetch API
                     const formData = new FormData(event.target);
+                    try {
+                        const response = await fetch("login.php", {
+                            method: "POST",
+                            body: formData,
+                        });
 
-                    const response = await fetch("login.php", {
-                        method: "POST",
-                        body: formData,
-                    });
+                        const result = await response.json();
 
-                    const result = await response.json();
-
-                    if (result.status === "success") {
-                        window.location.href = "menu.html";
-                    } else {
-                        alert(result.message);
+                        if (result.status === "success") {
+                            window.location.href = "menu.html";
+                        } else {
+                            errorMessage.textContent = result.message;
+                        }
+                    } catch (error) {
+                        errorMessage.textContent =
+                            "Ocorreu um erro. Tente novamente mais tarde.";
                     }
                 });
+
+            // Função de validação de e-mail
+            function validateEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
         </script>
     </body>
 </html>
