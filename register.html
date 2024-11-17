@@ -1,159 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register User</title>
-  <style>
-    /* General Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Register User</title>
+        <style>
+            /* General Styles */
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
 
-    .form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 0;
-    }
+            .form-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 40px 0;
+            }
 
-    /* Form Styles */
-    .form {
-      background-color: white;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      max-width: 800px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 20px;
-    }
+            /* Form Styles */
+            .form {
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                max-width: 800px;
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 20px;
+            }
 
-    .form h2 {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+            .form h2 {
+                grid-column: 1 / -1;
+                text-align: center;
+                margin-bottom: 20px;
+            }
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-    }
+            .form-group {
+                display: flex;
+                flex-direction: column;
+            }
 
-    .form-group label {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
 
-    .form-group input {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 16px;
-    }
+            .form-group input {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
 
-    .form button {
-      grid-column: 1 / -1;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+            .form button {
+                grid-column: 1 / -1;
+                padding: 10px;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
 
-    .form button:hover {
-      background-color: #45a049;
-    }
+            .form button:hover {
+                background-color: #45a049;
+            }
 
-    /* Logo Section */
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
+            /* Logo Section */
+            .logo-container {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
 
-    .logo-container img {
-      max-width: 150px;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <form action="cadastro.php" method="POST" class="form">
-      <div class="logo-container">
-        <img src="" alt="Logo do Restaurante">
-      </div>
-      <h2>Cadastro De Usuário</h2>
+            .logo-container img {
+                max-width: 150px;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+            <form action="cadastro.php" method="POST" class="form">
+                <div class="logo-container">
+                    <img src="logo.png" alt="Logo do Restaurante" />
+                </div>
+                <h2>Cadastro De Usuário</h2>
 
-      <div class="form-group">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-      </div>
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required />
+                </div>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
 
-      <div class="form-group">
-        <label for="data_nasc">Data de Nascimento:</label>
-        <input type="date" id="data_nasc" name="data_nasc" required>
-      </div>
+                <div class="form-group">
+                    <label for="data_nasc">Data de Nascimento:</label>
+                    <input
+                        type="date"
+                        id="data_nasc"
+                        name="data_nasc"
+                        required
+                    />
+                </div>
 
-      <div class="form-group">
-        <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required>
-      </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required />
+                </div>
 
-      <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-      </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required />
+                </div>
 
-      <div class="form-group">
-        <label for="cep">CEP:</label>
-        <input type="text" id="cep" name="cep" required>
-      </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" required />
+                </div>
 
-      <div class="form-group">
-        <label for="rua">Rua:</label>
-        <input type="text" id="rua" name="rua" required>
-      </div>
+                <div class="form-group">
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua" name="rua" required />
+                </div>
 
-      <div class="form-group">
-        <label for="numero">Numero:</label>
-        <input type="number" id="numero" name="numero" required>
-      </div>
+                <div class="form-group">
+                    <label for="numero">Numero:</label>
+                    <input type="number" id="numero" name="numero" required />
+                </div>
 
-      <div class="form-group">
-        <label for="rua">Bairro:</label>
-        <input type="text" id="bairro" name="bairro" required>
-      </div>
+                <div class="form-group">
+                    <label for="rua">Bairro:</label>
+                    <input type="text" id="bairro" name="bairro" required />
+                </div>
 
-      <div class="form-group">
-        <label for="complemento">Complemento:</label>
-        <input type="text" id="complemento" name="complemento" required>
-      </div>
+                <div class="form-group">
+                    <label for="complemento">Complemento:</label>
+                    <input
+                        type="text"
+                        id="complemento"
+                        name="complemento"
+                        required
+                    />
+                </div>
 
-      <div class="form-group">
-        <label for="cidade">Cidade:</label>
-        <input type="text" id="cidade" name="cidade" required>
-      </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" required />
+                </div>
 
-      <div class="form-group">
-        <label for="estado">Estado:</label>
-        <input type="text" id="estado" name="estado" required>
-      </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="estado" required />
+                </div>
 
-      <button type="submit">Registrar</button>
-    </form>
-  </div>
-</body>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </body>
 </html>
