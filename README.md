@@ -110,3 +110,57 @@ para facilitar instação e configuração do servidor apache e integração com
 
 
 ## Estrutura do Banco
+
+O banco de dados(*db_cardapio*) contém as seguintes tabelas:
+
+- tb_categoria
+  ```sql
+  CREATE TABLE tb_categoria (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255)
+  );
+  ```
+
+- tb_itens
+```sql
+CREATE TABLE tb_itens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idCategoria INT,
+    nome VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    foto varchar(255),
+    preco DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (idCategoria) REFERENCES tb_categorias(id)
+);
+```
+
+- tb_pedidos
+```sql
+CREATE TABLE tb_pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    item_id INT,
+    item_name VARCHAR(255),
+    item_price DECIMAL(10,2) NOT NULL,
+    quantity INT,
+    created_at TIMESTAMP,
+    FOREIGN KEY (item_id) REFERENCES tb_itens(id)
+);
+```
+- tb_usuario
+```sql
+CREATE TABLE tb_usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    data_nascimento DATE,
+    telefone VARCHAR(20),
+    senha VARCHAR(255) NOT NULL,
+    cep VARCHAR(10),
+    rua VARCHAR(255),
+    numero VARCHAR(10),
+    bairro VARCHAR(100),
+    complemento VARCHAR(100),
+    cidade VARCHAR(100),
+    estado CHAR(2)
+);
+```
