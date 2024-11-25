@@ -112,7 +112,7 @@ para facilitar instação e configuração do servidor apache e integração com
 ## Estrutura do Banco
 
 O banco de dados(*db_cardapio*) contém as seguintes tabelas:
-
+![Estrutura do Banco](/estrutura-banco.png)
 - tb_categoria
   ```sql
   CREATE TABLE tb_categoria (
@@ -122,6 +122,8 @@ O banco de dados(*db_cardapio*) contém as seguintes tabelas:
   ```
 
 - tb_itens
+Os intens foram inseridos da seguinte maneira:
+![alt text](/tb_itens.png)
 ```sql
 CREATE TABLE tb_itens (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -143,7 +145,6 @@ CREATE TABLE tb_pedidos (
     item_price DECIMAL(10,2) NOT NULL,
     quantity INT,
     created_at TIMESTAMP,
-    FOREIGN KEY (item_id) REFERENCES tb_itens(id)
 );
 ```
 - tb_usuario
